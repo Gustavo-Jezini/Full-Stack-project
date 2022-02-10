@@ -10,6 +10,7 @@ const Posts = () => {
   //temos Acesso ao state ou seja, a database
   const posts = useSelector((state) => state.posts) 
   console.log(posts);
+  
   return (
     <>
       <h1 className={classes}>POSTS</h1>
