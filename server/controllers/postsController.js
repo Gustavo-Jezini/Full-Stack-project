@@ -1,3 +1,4 @@
+const { Mongoose } = require('mongoose');
 const PostMessage = require('../models/postsModels');
 
 const getPosts = async (req, res) => {
@@ -26,7 +27,20 @@ const createPost = async (req, res) => {
   }
 }
 
+const updatePost = async (req, res) => {
+  const { id: _id } = req.params;
+
+  // verificar se o id é valido no mongo
+  if(!Mongoose.Types.ObjectiId.isValid(_id)) return res.status(404).send('No ')
+
+  // True no final é para receber a nova versao do post
+  const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+
+  res.json(updatedPost)
+}
+
 module.exports = {
   getPosts,
-  createPost
+  createPost,
+  updatePost
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
+import { Grid, CircularProgress } from "@material-ui/core"
 
 import useStyle from "./styles"
 
@@ -12,10 +13,15 @@ const Posts = () => {
   console.log(posts);
   
   return (
-    <>
-      <h1 className={classes}>POSTS</h1>
-      <Post />
-    </>
+    !posts.length ? <CircularProgress /> : (
+      <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+        {posts.map((post) => (
+          <Grid key={post.id} xs={12} sm={6} item>
+            <Post post={post} />
+          </Grid>
+        ))}
+      </Grid>
+    )
   );
 }
 
