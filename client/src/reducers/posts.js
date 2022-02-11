@@ -3,7 +3,7 @@ const reducer = (posts = [], action) => {
     case 'FETCH_ALL':
       return action.payload; //  Os posts que estao na DataBase do mongo
     case 'CREATE':
-      return posts;
+      return [ ...posts, action.payload ];
     default:
       return posts;
   }
